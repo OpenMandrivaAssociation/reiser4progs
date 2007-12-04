@@ -47,8 +47,6 @@ Group:		Development/Kernel
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
 Requires:	%{minimal_libname} = %{version}
-# temporary, so don't provide
-Obsoletes:	%{_lib}reiser4progs3-devel
 
 %description -n %{dev}
 Development related files for reiser4progs libraries.
@@ -57,8 +55,6 @@ Development related files for reiser4progs libraries.
 Summary:	Static reiser4progs libraries
 Group:		Development/Kernel
 Requires:	%{dev} = %{version}
-# temporary, so don't provide
-Obsoletes:	%{_lib}reiser4progs3-static-devel
 
 %description -n	%{staticdev}
 Static reiser4progs libraries.
