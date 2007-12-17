@@ -25,7 +25,6 @@ BuildRequires:	ncurses-devel
 # wants uuid
 BuildRequires:	e2fsprogs-devel
 Requires:	%{libname} = %{version}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Reiser4 is a file system using plug-in based object oriented variant
