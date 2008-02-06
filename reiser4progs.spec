@@ -18,6 +18,7 @@ Release:	%{release}
 License:	GPL
 Group:		System/Kernel and hardware
 Source0:	%{name}-%{version}.tar.bz2
+Patch1:		reiser4progs-1.0.4-gcc4.patch
 URL:		http://www.namesys.com/
 BuildRequires:	libaal-devel >= 1.0.4
 BuildRequires:	readline-devel
@@ -70,11 +71,11 @@ memory footprint.
 
 %prep
 %setup -q
+%patch1 -p1 -b .gcc4
 
 %build
 # be very careful
 %configure2_5x \
-	--enable-Werror \
 	--sbindir=/sbin \
 	%{?debug:--enable-debug}
 
