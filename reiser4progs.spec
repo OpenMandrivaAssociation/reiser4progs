@@ -1,6 +1,7 @@
 %define name	reiser4progs
-%define version 1.0.4
-%define release %mkrel 4
+%define version 1.0.7
+%define release %mkrel 1
+%define _disable_ld_no_undefined 1
 
 %define major	4
 %define api	1.0
@@ -18,9 +19,9 @@ Release:	%{release}
 License:	GPL
 Group:		System/Kernel and hardware
 Source0:	%{name}-%{version}.tar.bz2
-Patch1:		reiser4progs-1.0.4-gcc4.patch
+Patch0:		reiser4progs-1.0.7-fix-string-format.patch
 URL:		http://www.namesys.com/
-BuildRequires:	libaal-devel >= 1.0.4
+BuildRequires:	libaal-static-devel >= 1.0.5
 BuildRequires:	readline-devel
 BuildRequires:	ncurses-devel
 # wants uuid
@@ -71,7 +72,7 @@ memory footprint.
 
 %prep
 %setup -q
-%patch1 -p1 -b .gcc4
+%patch0 -p1 -b .strfmt
 
 %build
 # be very careful
