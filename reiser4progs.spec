@@ -1,6 +1,6 @@
 %define name	reiser4progs
 %define version 1.0.7
-%define release %mkrel 2
+%define release %mkrel 3
 %define _disable_ld_no_undefined 1
 
 %define major	4
@@ -21,7 +21,7 @@ Group:		System/Kernel and hardware
 Source0:	%{name}-%{version}.tar.bz2
 Patch0:		reiser4progs-1.0.7-fix-string-format.patch
 URL:		http://www.namesys.com/
-BuildRequires:	libaal-static-devel >= 1.0.5
+BuildRequires:	libaal-static-devel >= 1.0.5-4
 BuildRequires:	glibc-static-devel
 BuildRequires:	readline-devel
 BuildRequires:	ncurses-devel
@@ -79,6 +79,8 @@ memory footprint.
 # be very careful
 %configure2_5x \
 	--sbindir=/sbin \
+	--libdir=/%{_lib} \
+	--libexecdir=/%{_lib} \
 	%{?debug:--enable-debug}
 
 %make
@@ -114,23 +116,23 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{libname}
 %defattr(-,root,root,-)
 %doc COPYING
-%{_libdir}/libreiser4-%{api}.so.*
-%{_libdir}/librepair-%{api}.so.*
+/%{_lib}/libreiser4-%{api}.so.*
+/%{_lib}/librepair-%{api}.so.*
 
 %files -n %{minimal_libname}
 %defattr(-,root,root,-)
 %doc COPYING
-%{_libdir}/libreiser4-minimal-%{api}.so.*
+/%{_lib}/libreiser4-minimal-%{api}.so.*
 
 %files -n %{dev}
 %defattr(-,root,root,-)
 %doc BUGS ChangeLog TODO
-%{_libdir}/lib*.so
-%{_libdir}/lib*.la
+/%{_lib}/lib*.so
+/%{_lib}/lib*.la
 %{_includedir}/*
 %{_datadir}/aclocal/*.m4
 
 %files -n %{staticdev}
 %defattr(-,root,root,-)
-%{_libdir}/lib*.a
+/%{_lib}/lib*.a
 
