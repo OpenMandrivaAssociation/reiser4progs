@@ -1,6 +1,6 @@
 %define name	reiser4progs
 %define version 1.0.7
-%define release %mkrel 3
+%define release %mkrel 4
 %define _disable_ld_no_undefined 1
 
 %define major	4
