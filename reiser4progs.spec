@@ -1,6 +1,3 @@
-%define name	reiser4progs
-%define version 1.0.7
-%define release %mkrel 4
 %define _disable_ld_no_undefined 1
 
 %define major	4
@@ -13,9 +10,9 @@
 %define minimal_libname_basic	%mklibname %{name}-minimal-%{api}
 
 Summary:	Utilities belonging to the Reiser4 filesystem
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		reiser4progs
+Version:	1.0.7
+Release:	5
 License:	GPL
 Group:		System/Kernel and hardware
 Source0:	%{name}-%{version}.tar.bz2
@@ -26,9 +23,8 @@ BuildRequires:	glibc-static-devel
 BuildRequires:	readline-devel
 BuildRequires:	ncurses-devel
 # wants uuid
-BuildRequires:	e2fsprogs-devel
+BuildRequires:	pkgconfig(ext2fs)
 Requires:	%{libname} = %{version}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Reiser4 is a file system using plug-in based object oriented variant
@@ -86,25 +82,7 @@ memory footprint.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-%if %mdkversion < 200900
-%post	-n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%post	-n %{minimal_libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{minimal_libname} -p /sbin/ldconfig
-%endif
 
 %files
 %defattr(-,root,root,-)
@@ -128,11 +106,74 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc BUGS ChangeLog TODO
 /%{_lib}/lib*.so
-/%{_lib}/lib*.la
 %{_includedir}/*
 %{_datadir}/aclocal/*.m4
 
 %files -n %{staticdev}
 %defattr(-,root,root,-)
 /%{_lib}/lib*.a
+
+
+
+%changelog
+* Fri Aug 13 2010 Tomas Kindl <supp@mandriva.org> 1.0.7-4mdv2011.0
++ Revision: 569326
+- rebuild for 2011.0/cooker
+
+* Fri May 01 2009 Thomas Backlund <tmb@mandriva.org> 1.0.7-3mdv2010.0
++ Revision: 369995
+- libs should be in /lib instead of /usr/lib (#50451)
+
+* Tue Mar 03 2009 Guillaume Rousse <guillomovitch@mandriva.org> 1.0.7-2mdv2009.1
++ Revision: 347944
+- rebuild for latest readline
+
+* Sun Feb 15 2009 Frederik Himpe <fhimpe@mandriva.org> 1.0.7-1mdv2009.1
++ Revision: 340579
+- BuildRequires: glibc-static-devel in addition to libaal-static-devel
+- Update to version 1.0.7
+- Remove gcc4 patch: not needed anymore
+- Added patch to fix string format errors
+- Don't link with --no-undefined, it breaks the build
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+    - rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Wed Feb 06 2008 Makoto Dei <makoto@turbolinux.co.jp> 1.0.4-1mdv2008.1
++ Revision: 163044
+- build fix with gcc4
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - remove old obsoletes that are useless for nearly 3 years
+    - use %%mkrel
+    - import reiser4progs
+
+
+* Sat Mar 12 2005 Abel Cheung <deaddog@mandrake.org> 1.0.4-1mdk
+- 1.0.4
+- Remove all patches (upstream)
+- Simplify description
+- Fix mklibname
+- Don't add maj to devel package, they are not parallel installable
+- Split minimal library
+
+* Sat Jan 22 2005 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 1.0.3-1mdk
+- 1.0.3
+- new (lowered??) major
+- fix provides
+
+* Tue Jun 18 2004 Svetoslav Slavtchev <svetljo@gmx.de> 0.5.5-1mdk
+- 0.5.5
+- re-add static package
+
+* Sat Jun 12 2004 Torbjorn Turpeinen <tobbe@nyvalls.se> 0.5.4-1thac
+- Built for Mandrake 10.0 official
 
