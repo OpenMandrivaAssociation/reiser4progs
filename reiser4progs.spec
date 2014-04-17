@@ -11,11 +11,11 @@
 
 Summary:	Utilities belonging to the Reiser4 filesystem
 Name:		reiser4progs
-Version:	1.0.7
-Release:	5
+Version:	1.0.8
+Release:	1
 License:	GPL
 Group:		System/Kernel and hardware
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://cznic.dl.sourceforge.net/project/reiser4/reiser4-utils/reiser4progs/reiser4progs-%{version}.tar.gz
 Patch0:		reiser4progs-1.0.7-fix-string-format.patch
 URL:		http://www.namesys.com/
 BuildRequires:	libaal-static-devel >= 1.0.5-4
