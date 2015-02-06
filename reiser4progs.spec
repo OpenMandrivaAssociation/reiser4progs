@@ -12,7 +12,7 @@
 Summary:	Utilities belonging to the Reiser4 filesystem
 Name:		reiser4progs
 Version:	1.0.8
-Release:	1
+Release:	2
 License:	GPL
 Group:		System/Kernel and hardware
 Source0:	http://cznic.dl.sourceforge.net/project/reiser4/reiser4-utils/reiser4progs/reiser4progs-%{version}.tar.gz
