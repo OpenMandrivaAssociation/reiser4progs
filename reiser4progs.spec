@@ -18,6 +18,11 @@ Group:		System/Kernel and hardware
 Source0:	http://cznic.dl.sourceforge.net/project/reiser4/reiser4-utils/reiser4progs/reiser4progs-%{version}.tar.gz
 Patch0:		reiser4progs-1.0.7-fix-string-format.patch
 URL:		https://www.namesys.com/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	libaal-static-devel >= 1.0.6
 BuildRequires:	glibc-static-devel
 BuildRequires:	readline-devel
